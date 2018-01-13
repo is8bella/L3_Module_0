@@ -1,6 +1,14 @@
 package IntroToHashMaps;
 
-public class LogSearch {
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.HashMap;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+public class LogSearch implements ActionListener{
   /* 
 	 * Crate a HashMap of Integers for the keys and Strings for the values.
 	 * Create a GUI with three buttons. 
@@ -28,4 +36,25 @@ public class LogSearch {
 	 * 				is not in the list. 
 	 *
 	 * */
+	JFrame frame = new JFrame("Log Search");
+	JPanel panel = new JPanel();
+	JButton addentry = new JButton("Add Entry");
+	JButton searchID = new JButton("Search by ID");
+	JButton viewlist = new JButton("View List");
+	JButton remove = new JButton("Remove Entry");
+	
+	public static void main(String[] args) {
+		HashMap<Integer, String> log = new HashMap<>();
+	}
+	
+	public void GUI() {
+		
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	
 }
