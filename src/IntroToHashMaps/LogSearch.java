@@ -6,6 +6,7 @@ import java.util.HashMap;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class LogSearch implements ActionListener{
@@ -36,6 +37,8 @@ public class LogSearch implements ActionListener{
 	 * 				is not in the list. 
 	 *
 	 * */
+	HashMap<Integer, String> log = new HashMap<>();
+	
 	JFrame frame = new JFrame("Log Search");
 	JPanel panel = new JPanel();
 	JButton addentry = new JButton("Add Entry");
@@ -43,17 +46,56 @@ public class LogSearch implements ActionListener{
 	JButton viewlist = new JButton("View List");
 	JButton remove = new JButton("Remove Entry");
 	
+	String ID;
+	String name; 
+	String search;
+	
 	public static void main(String[] args) {
-		HashMap<Integer, String> log = new HashMap<>();
+		LogSearch logsearch = new LogSearch();
+		logsearch.GUI();	
 	}
 	
-	public void GUI() {
+	public void GUI() {	
+		addentry.addActionListener(this);
+		searchID.addActionListener(this);
+		viewlist.addActionListener(this);
+		remove.addActionListener(this);
 		
+		frame.add(panel);
+		panel.add(addentry);
+		panel.add(searchID);
+		panel.add(viewlist);
+		panel.add(remove);
+		frame.pack();
+		frame.setVisible(true);
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
+		if(e.getSource() == addentry) {
+			ID = JOptionPane.showInputDialog("Enter ID number:");
+			name = JOptionPane.showInputDialog("Enter name:");
+			
+			int IDint = Integer.parseInt(ID);
+			
+			log.put(IDint, name);
+		}
+		if(e.getSource() == searchID) {
+			search = JOptionPane.showInputDialog("Search by ID:");
+			int searchint = Integer.parseInt(search);
+			if(log.containsKey(searchint)) {
+				JOptionPane.showMessageDialog(null, log.get(searchint));
+			}
+			else {
+				JOptionPane.showMessageDialog(null, "That entry does not exist.");
+			}
+			
+		}
+		if(e.getSource() == viewlist) { //should put in for loop that goes through the hashmap
+			JOptionPane.showMessageDialog(null, "\n ID: " );
+			JOptionPane.showMessageDialog(null, "\n Name: ");
+		}
 		
 	}
 	
