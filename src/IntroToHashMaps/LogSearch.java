@@ -2,6 +2,7 @@ package IntroToHashMaps;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.swing.JButton;
@@ -46,9 +47,11 @@ public class LogSearch implements ActionListener{
 	JButton viewlist = new JButton("View List");
 	JButton remove = new JButton("Remove Entry");
 	
-	String ID;
+	String IDnum;
 	String name; 
 	String search;
+	String List = ""; 
+	ArrayList<String> ID = new ArrayList();
 	
 	public static void main(String[] args) {
 		LogSearch logsearch = new LogSearch();
@@ -74,10 +77,12 @@ public class LogSearch implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		if(e.getSource() == addentry) {
-			ID = JOptionPane.showInputDialog("Enter ID number:");
+			IDnum = JOptionPane.showInputDialog("Enter ID number:");
 			name = JOptionPane.showInputDialog("Enter name:");
 			
-			int IDint = Integer.parseInt(ID);
+			int IDint = Integer.parseInt(IDnum);
+			
+			ID.add(IDnum);
 			
 			log.put(IDint, name);
 		}
@@ -93,8 +98,16 @@ public class LogSearch implements ActionListener{
 			
 		}
 		if(e.getSource() == viewlist) { //should put in for loop that goes through the hashmap
-			JOptionPane.showMessageDialog(null, "\n ID: " );
-			JOptionPane.showMessageDialog(null, "\n Name: ");
+			//for (int i = 1; i < log.size(); i++) {				
+				//List+= "ID: " + ID.get(i--) + "  Name: " + log.get(i) + "\n";
+			//}
+			for (Integer k : log.keySet()) {
+				List += "ID: " + k + "  Name: " + log.get(k) + "\n";
+			}
+			JOptionPane.showMessageDialog(null, List);
+		}
+		if(e.getSource() == remove) {
+			
 		}
 		
 	}
