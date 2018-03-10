@@ -53,6 +53,8 @@ public class LogSearch implements ActionListener{
 	String List = ""; 
 	ArrayList<String> ID = new ArrayList();
 	
+	String removeID;
+	
 	public static void main(String[] args) {
 		LogSearch logsearch = new LogSearch();
 		logsearch.GUI();	
@@ -107,7 +109,17 @@ public class LogSearch implements ActionListener{
 			JOptionPane.showMessageDialog(null, List);
 		}
 		if(e.getSource() == remove) {
+			removeID = JOptionPane.showInputDialog("Enter ID number you wish to remove:");
 			
+			int removeIDint = Integer.parseInt(removeID);
+			
+			if(log.containsKey(removeIDint)) {
+			
+			log.remove(removeIDint, name);
+			JOptionPane.showMessageDialog(null, "Successfully terminated.");
+			System.out.println(log);
+			
+			}
 		}
 		
 	}
